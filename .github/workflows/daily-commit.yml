@@ -18,7 +18,7 @@ jobs:
     # Set up Git for committing
     - name: Set up Git configuration
       run: |
-        git config --global user.name "Your GitHub Username"
+        git config --global user.name "23f2002600"
         git config --global user.email "23f2002600@ds.study.iitm.ac.in"
 
     # Create a file and commit changes (a dummy change for the commit)
@@ -27,4 +27,11 @@ jobs:
         echo "Daily commit" >> daily_commit.txt
         git add daily_commit.txt
         git commit -m "Daily commit by 23f2002600@ds.study.iitm.ac.in"
+
+    # Push the commit using the GitHub token
+    - name: Push changes
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/23f2002600/TDS_W2.git
         git push
